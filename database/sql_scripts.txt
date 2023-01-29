@@ -1,0 +1,45 @@
+drop table event_manager;
+drop table guest;
+drop table sub_event;
+drop table event_guest;
+
+create table event_manager (id int,name varchar, PRIMARY KEY(id) );
+
+create table guest (id int, name varchar, adult int, child int,address varchar,phone int,relation varchar,PRIMARY KEY(id));
+
+create sequence guest_seq;
+create sequence sub_event_seq;
+create sequence event_guest_seq;
+create sequence event_manager_seq;
+
+create table sub_event(id int,name varchar,sub_event_date date,PRIMARY KEY(id));
+alter table sub_event add column name varchar;
+
+create table event_guest(
+id int, 
+guest_id int, 
+sub_event_id int, 
+adult int, 
+child int,
+non_veg boolean,
+PRIMARY KEY(id),
+CONSTRAINT fk_sub_event
+  FOREIGN KEY(sub_event_id) 
+  REFERENCES sub_event(id),
+CONSTRAINT fk_guest
+  FOREIGN KEY(guest_id) 
+  REFERENCES guest(id));
+ 
+ select * from guest; 
+ 
+select * from sub_event;
+
+create table relation(id int,relation_name varchar ,PRIMARY KEY(id));
+
+insert into relation values (1,'SCHOOL_FRIEND');
+insert into relation values (2,'COLLEGE_FRIEND');
+insert into relation values (3,'DAD_FRIEND');
+insert into relation values (4,'MOM_FRIEND');
+insert into relation values (5,'MOM_RELATIVE');
+insert into relation values (6,'DAD_RELATIVE');
+insert into relation values (7,'COLLEAGUE');
