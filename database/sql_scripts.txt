@@ -21,7 +21,8 @@ guest_id int,
 sub_event_id int, 
 adult int, 
 child int,
-non_veg boolean,
+non_veg int,
+veg int,
 PRIMARY KEY(id),
 CONSTRAINT fk_sub_event
   FOREIGN KEY(sub_event_id) 
